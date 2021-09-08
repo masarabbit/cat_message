@@ -35,8 +35,10 @@ p, h1, h2, h3, h4 {
 }
 
 .plane_wrapper {
+  position: absolute;
   display: flex;
   align-items: center;
+  /* border: red 1px solid; */
 }
 
 .sprite_container,
@@ -66,14 +68,15 @@ p, h1, h2, h3, h4 {
 }
 
 .rope {
-  position: relative;
-  margin: -1px 0 0 0;
+  margin: -1px -2px 0 -20px;
   height: 60px;
   width: 60px;
+  z-index: -1;
+  transform-origin: center left;
+  transition: 0.4s;
 }
 
 .message {
-  position: relative;
   height: 30px;
   line-height: 30px;
   background-color: antiquewhite;
@@ -84,5 +87,10 @@ p, h1, h2, h3, h4 {
 }
 
 .module {
-  transition: 0.5s;
+  position: relative;
+  transition: 0.7s ease-in-out;
+}
+
+.front {
+  display: flex;
 }
