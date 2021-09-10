@@ -4,6 +4,7 @@ function init() {
   //TODO split based on length?
   //TODO add cloud
 
+
   const plainSvg = () =>{
     const a = '#155379'
     const b = '#fff'
@@ -25,9 +26,8 @@ function init() {
  
   const cellD = 60
   let spriteId = 0
-  let moduleId = 0
   const topValues = [0.5,1.5,2.5,3.5]
-  let topIndex = 0
+  let topIndex = 3
   
   
   const animate = (actor, frame, cellD) =>{
@@ -62,7 +62,7 @@ function init() {
   const mapModules = words =>{
     return words.map(word =>{
       return `
-      <div class="message module module_${moduleId}">
+      <div class="message module module_${spriteId}">
         ${word}
       </div>
       `
@@ -72,10 +72,9 @@ function init() {
   const createPlane = sentence =>{
     const plane = document.createElement('div')
     spriteId++
-    moduleId++
     plane.classList.add('plane_wrapper')
     plane.innerHTML = `
-    <div class="front module module_${moduleId}">
+    <div class="front module module_${spriteId}">
       <div class="sprite_container">
         <div class="sprite sprite_${spriteId}">
           ${plainSvg()}
@@ -91,10 +90,13 @@ function init() {
       animate(sprite, 2, cellD)
     },200)
     // console.log('test',plane.childNodes[1].childNodes[1].childNodes[1])
-    const modules = document.querySelectorAll(`.module_${moduleId}`)
+    const modules = document.querySelectorAll(`.module_${spriteId}`)
     bop(modules,0)
-    topIndex = topIndex > (topValues.length -1) ? 0 : topIndex + 1 
+    topIndex = (topIndex + 1) < topValues.length
+      ? topIndex + 1
+      : 0
     plane.style.top = `${topValues[topIndex] * plane.offsetHeight + (20 * topValues[topIndex])}px`
+    // console.log('top',`${topIndex}-${queryIndex}`)
     plane.style.left = '100%'
     plane.style.transition = '6s ease'
 
@@ -122,7 +124,10 @@ function init() {
     createPlane(queries[queryIndex].replaceAll('#',' '))
     queryIndex = (queryIndex + 1) < queries.length
       ? queryIndex + 1
-      : 0
+      : 0 
+    console.log('length', `${queries.length}-${topValues.length}`)  
+    if (queryIndex === 0) spriteIndex = 0
+    // console.log('q', queryIndex)
     setTimeout(()=>{
       createPlanes()
     },3000)

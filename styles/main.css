@@ -31,6 +31,9 @@ p, h1, h2, h3, h4 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.pointer-events-none {
   pointer-events: none;
 }
 
@@ -93,4 +96,9 @@ p, h1, h2, h3, h4 {
 
 .front {
   display: flex;
+}
+
+input {
+  z-index: 100;
+  cursor: pointer;
 }
