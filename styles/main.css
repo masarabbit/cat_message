@@ -34,6 +34,16 @@ p, h1, h2, h3, h4 {
   margin-top: 80px;
 }
 
+.flex_wrapper {
+  width: 100%;
+  padding-left: calc(20% + 100px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border: 1px solid;
+  opacity: 0.1;
+}
+
 /* .pointer-events-none {
   pointer-events: none;
 } */
@@ -80,6 +90,7 @@ p, h1, h2, h3, h4 {
   transition: 0.4s;
 }
 
+.message_ghost,
 .message {
   height: 30px;
   line-height: 30px;
@@ -102,4 +113,12 @@ p, h1, h2, h3, h4 {
 input {
   z-index: 100;
   cursor: pointer;
+}
+
+.test {
+  color: #155379;
+  color: #fff;
+  color: #fffd8a;
+  color: #0482d6;
+  color: #f3e412;
 }

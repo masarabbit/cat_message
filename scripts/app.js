@@ -4,6 +4,7 @@ function init() {
   //TODO add cloud
   //TODO could work out where to split to next paragraph by indicating on page.
   
+  const planeTimer = []
   const wrapper = document.querySelector('.wrapper')
   const planeColorOne = {
     a: '#155379',
@@ -30,8 +31,8 @@ function init() {
   }
 
   const cellD = 60
-  let spriteId = 0
   const topValues = [0.5,1.5,2.5,3.5]
+  let spriteId = 0
   let topIndex = 3
   let count = 0
   let letterCount = 0
@@ -105,14 +106,14 @@ function init() {
     // console.log('top',`${topIndex}-${bannerIndex}`)
     plane.style.left = '100%'
     plane.style.transition = '6s ease'
-
-    setTimeout(()=>{
+    
+    planeTimer[bannerIndex].timerOne = setTimeout(()=>{
       plane.style.left = '10%'
     },100)
-    setTimeout(()=>{
+    planeTimer[bannerIndex].timerTwo = setTimeout(()=>{
       plane.style.left = `-${plane.offsetWidth + 200}px`
     },8000)
-    setTimeout(()=>{
+    planeTimer[bannerIndex].timerThree = setTimeout(()=>{
       wrapper.removeChild(plane)
       const planeNo = document.querySelectorAll('.plane_wrapper').length + 1
       if (count === banners.length && planeNo < banners.length){
@@ -125,37 +126,74 @@ function init() {
 
   const bannerContent = window.location.hash.replace('#','')
   const banners = []
-  const word = []
-  const wrapperMinusPlane = wrapper.offsetWidth - 120
-  const messageSplitLimit = Math.floor(((wrapperMinusPlane - (wrapperMinusPlane * 0.1)) / 20))
+  
   // console.log(bannerContent)
   // console.log(messageSplitLimit)
   // console.log('wrapper', messageSplitLimit)
+  // const calcWrapIndex = () =>{
+  //   const flexWrapper = document.querySelector('.flex_flexWrapper')
+  //   const bannerContent = window.location.hash.replace('#','')
+  //   const wrapIndex = []
+  //   flexWrapper.innerHTML = bannerContent.split('#').map(word=>{
+  //     return `
+  //       <div class="message">
+  //         ${word}
+  //       </div>
+  //     `
+  //   }).join('')
+  //   const messageGhosts = document.querySelectorAll('.messageGhost')
+  //   messageGhosts.forEach((message,i)=>{
+  //     if (i === (messageGhosts.length - 1)) return
+  //     if (message.getBoundingClientRect().y < messageGhosts[i + 1].getBoundingClientRect().y){
+  //       wrapIndex.push(i)
+  //     }
+  //   })
+  //   return wrapIndex
+  // }
+  // const wrapIndex = calcWrapIndex()
+  
+  const splitContentForBanners = () =>{
+    //* banners populated based on page width
+    banners.length = 0
+    const word = []
+    const wrapperMinusPlane = wrapper.offsetWidth - 120
+    const messageSplitLimit = Math.floor(((wrapperMinusPlane - (wrapperMinusPlane * 0.1)) / 20))
+    console.log('bannerContent', bannerContent)
+    bannerContent.split('').forEach((letter,i)=>{
+      letterCount++
+      word.push(letter)
 
+      // ensures word are not split across banner
+      if (letter === '#'){  //TODO need to check if first #
+        const index = !banners.length 
+          ? 0
+          : banners.length - 1
+        banners[index] = banners[index]
+          ? banners[index] + word.join('')
+          : word.join('')
+        word.length = 0
+        
+      } else if (letterCount === messageSplitLimit){
+        banners.push(word.join(''))
+        word.length = 0
+        letterCount = 0
+      }
+      if (i === (bannerContent.length - 1)) banners.push(word.join(''))
+    })
+    console.log('latest banner', banners)
+  }
 
-  //* banners populated based on page width
-  bannerContent.split('').forEach((letter,i)=>{
-    letterCount++
-    word.push(letter)
-
-    // ensures word are not split across banner
-    if (letter === '#'){  
-      const index = !banners.length 
-        ? 0
-        : banners.length - 1
-      banners[index] = banners[index]
-        ? banners[index] + word.join('')
-        : word.join('')
-
-      word.length = 0
-    } else if (letterCount === messageSplitLimit){
-      banners.push(word.join(''))
-      word.length = 0
-      letterCount = 0
-    }
-    if (i === (bannerContent.length - 1)) banners.push(word.join(''))
-  })
-
+  const createTimers = () =>{
+    planeTimer.length = 0
+    banners.forEach(()=>{
+      planeTimer.push({
+        timerOne: null,
+        timerTwo: null,
+        timerThree: null,
+      })
+    })
+  }
+  
   // console.log('bannerContent', banners)
 
   const createPlanes = () =>{  
@@ -177,7 +215,29 @@ function init() {
     },3000)
   }
   
+
+
+  splitContentForBanners()
+  createTimers()
   createPlanes()
+
+  window.addEventListener('resize',()=>{
+    planeTimer.forEach(timers=>{
+      clearTimeout(timers.timerOne)
+      clearTimeout(timers.timerTwo)
+      clearTimeout(timers.timerThree)
+    })
+    wrapper.innerHTML = ''
+    spriteId = 0
+    topIndex = 3
+    count = 0
+    letterCount = 0
+    bannerIndex = 0
+    splitContentForBanners()
+    createTimers()
+    createPlanes()
+  })
+
 
 }
 
