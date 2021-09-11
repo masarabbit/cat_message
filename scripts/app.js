@@ -1,41 +1,63 @@
 function init() {
 
-  //TODO cat bichosei design
   //TODO add cloud
-  //TODO could work out where to split to next paragraph by indicating on page.
+  //TODO add cat colour scheme
+  //TODO ADD message encoding?
   
-  const planeTimer = []
-  const wrapper = document.querySelector('.wrapper')
-  const planeColorOne = {
-    a: '#155379',
-    b: '#fff',
-    c: '#fffd8a',
-    d: '#0482d6',
-    e: '#f3e412',
-  }
+
+  const colors = [
+    {
+      a: 'navy',
+      b: '#fff',
+      c: '#f3e412',
+      d: '#0482d6',
+    },
+    {
+      a: 'rgb(248, 59, 59)',
+      b: 'pink',
+      c: 'yellow',
+      d: 'rgb(252, 101, 201)',
+    },
+    {
+      a: '#fff',
+      b: 'rgb(59, 59, 202)',
+      c: '#9953f5',
+      d: '#67fdf1',
+    },
+    {
+      a: 'navy',
+      b: 'rgb(166, 225, 252)',
+      c: '#9df312',
+      d: '#ffef5d',
+    }
+  ]
 
   const planeSvg = () =>{
-    const { a, b, c, d, e } = planeColorOne
+    const { a, b, c, d } = colors[Math.floor(Math.random() * colors.length)]
 
     return `<svg x="0px" y="0px" width="100%" height="100%" viewBox="0 0 48 24">
-    <path fill="${a}" d="M 32 1h1v1h-1v-1"/> <path fill="${a}" d="M 39 1h1v1h-1v-1"/> <path fill="${a}" d="M 8 2h1v1h-1v-1"/> <path fill="${a}" d="M 15 2h1v1h-1v-1"/> <path fill="${a}" d="M 31 2h1v6h-1v-6"/> <path fill="${b}" d="M 32 2h1v1h1v1h4v-1h1v-1h1v6h-1v1h-6v-1h-1v-6"/> <path fill="${a}" d="M 33 2h1v1h-1v-1"/> <path fill="${a}" d="M 38 2h1v1h-1v-1"/> <path fill="${a}" d="M 40 2h1v6h-1v-6"/> <path fill="${a}" d="M 7 3h1v6h-1v-6"/> <path fill="${b}" d="M 8 3h1v1h1v1h4v-1h1v-1h1v6h-1v1h-6v-1h-1v-6"/> <path fill="${a}" d="M 9 3h1v1h-1v-1"/> <path fill="${a}" d="M 14 3h1v1h-1v-1"/> <path fill="${a}" d="M 16 3h1v6h-1v-6"/> <path fill="${a}" d="M 34 3h4v1h-4v-1"/> <path fill="${a}" d="M 10 4h4v1h-4v-1"/> <path fill="${c}" d="M 22 5h2v6h-1v-1h-1v-1h-3v-1h1v-1h1v-1h1v-1"/> <path fill="${a}" d="M 33 5h1v2h-1v-2"/> <path fill="${a}" d="M 38 5h1v2h-1v-2"/> <path fill="${c}" d="M 46 5h2v6h-1v-1h-1v-1h-3v-1h1v-1h1v-1h1v-1"/> <path fill="${a}" d="M 9 6h1v2h-1v-2"/> <path fill="${a}" d="M 14 6h1v2h-1v-2"/> <path fill="${a}" d="M 35 7h2v1h-2v-1"/> <path fill="${a}" d="M 11 8h2v1h-2v-1"/> <path fill="${a}" d="M 32 8h1v1h-1v-1"/> <path fill="${a}" d="M 39 8h1v1h-1v-1"/> <path fill="${d}" d="M 4 9h3v1h1v1h1v1h6v-1h1v-1h1v-1h5v1h1v1h1v1h1v-1h1v-1h2v-1h3v1h1v1h1v1h6v-1h1v-1h1v-1h5v1h1v1h1v2h-4v1h1v1h1v1h-1v1h-5v-3h-1v-1h-6v1h-1v3h-6v-1h-1v-1h-1v-2h-4v1h1v1h1v1h-1v1h-5v-3h-1v-1h-6v1h-1v3h-6v-1h-1v-1h-1v-3h1v-1h1v-1h2v-1"/> <path fill="${e}" d="M 7 9h1v1h-1v-1"/> <path fill="${a}" d="M 8 9h1v1h-1v-1"/> <path fill="${a}" d="M 15 9h1v1h-1v-1"/> <path fill="${e}" d="M 16 9h1v1h-1v-1"/> <path fill="${e}" d="M 31 9h1v1h-1v-1"/> <path fill="${b}" d="M 32 9h1v1h-1v-1"/> <path fill="${a}" d="M 33 9h6v1h-6v-1"/> <path fill="${b}" d="M 39 9h1v1h-1v-1"/> <path fill="${e}" d="M 40 9h1v1h-1v-1"/> <path fill="${e}" d="M 8 10h1v1h-1v-1"/> <path fill="${a}" d="M 9 10h6v1h-6v-1"/> <path fill="${e}" d="M 15 10h1v1h-1v-1"/> <path fill="${e}" d="M 32 10h1v1h-1v-1"/> <path fill="${b}" d="M 33 10h6v1h-6v-1"/> <path fill="${e}" d="M 39 10h1v1h-1v-1"/> <path fill="${e}" d="M 9 11h6v1h-6v-1"/> <path fill="${e}" d="M 33 11h6v1h-6v-1"/> <path fill="${c}" d="M 9 13h6v1h1v7h-1v1h-3v-1h-1v-1h-1v-1h-1v-1h-1v-4h1v-1"/> <path fill="${c}" d="M 20 13h4v4h-1v-1h-1v-1h-1v-1h-1v-1"/> <path fill="${c}" d="M 33 13h6v1h1v7h-1v1h-3v-1h-1v-1h-1v-1h-1v-1h-1v-4h1v-1"/> <path fill="${c}" d="M 44 13h4v4h-1v-1h-1v-1h-1v-1h-1v-1"/>`
+    <path fill="${a}" d="M 32 1h1v1h-1v-1"/> <path fill="${a}" d="M 39 1h1v1h-1v-1"/> <path fill="${a}" d="M 8 2h1v1h-1v-1"/> <path fill="${a}" d="M 15 2h1v1h-1v-1"/> <path fill="${a}" d="M 31 2h1v6h-1v-6"/> <path fill="${b}" d="M 32 2h1v1h1v1h4v-1h1v-1h1v6h-1v1h-6v-1h-1v-6"/> <path fill="${a}" d="M 33 2h1v1h-1v-1"/> <path fill="${a}" d="M 38 2h1v1h-1v-1"/> <path fill="${a}" d="M 40 2h1v6h-1v-6"/> <path fill="${a}" d="M 7 3h1v6h-1v-6"/> <path fill="${b}" d="M 8 3h1v1h1v1h4v-1h1v-1h1v6h-1v1h-6v-1h-1v-6"/> <path fill="${a}" d="M 9 3h1v1h-1v-1"/> <path fill="${a}" d="M 14 3h1v1h-1v-1"/> <path fill="${a}" d="M 16 3h1v6h-1v-6"/> <path fill="${a}" d="M 34 3h4v1h-4v-1"/> <path fill="${a}" d="M 10 4h4v1h-4v-1"/> <path fill="${c}" d="M 22 5h2v6h-1v-1h-1v-1h-3v-1h1v-1h1v-1h1v-1"/> <path fill="${a}" d="M 33 5h1v2h-1v-2"/> <path fill="${a}" d="M 38 5h1v2h-1v-2"/> <path fill="${c}" d="M 46 5h2v6h-1v-1h-1v-1h-3v-1h1v-1h1v-1h1v-1"/> <path fill="${a}" d="M 9 6h1v2h-1v-2"/> <path fill="${a}" d="M 14 6h1v2h-1v-2"/> <path fill="${a}" d="M 35 7h2v1h-2v-1"/> <path fill="${a}" d="M 11 8h2v1h-2v-1"/> <path fill="${a}" d="M 32 8h1v1h-1v-1"/> <path fill="${a}" d="M 39 8h1v1h-1v-1"/> <path fill="${d}" d="M 4 9h3v1h1v1h1v1h6v-1h1v-1h1v-1h5v1h1v1h1v1h1v-1h1v-1h2v-1h3v1h1v1h1v1h6v-1h1v-1h1v-1h5v1h1v1h1v2h-4v1h1v1h1v1h-1v1h-5v-3h-1v-1h-6v1h-1v3h-6v-1h-1v-1h-1v-2h-4v1h1v1h1v1h-1v1h-5v-3h-1v-1h-6v1h-1v3h-6v-1h-1v-1h-1v-3h1v-1h1v-1h2v-1"/> <path fill="${c}" d="M 7 9h1v1h-1v-1"/> <path fill="${a}" d="M 8 9h1v1h-1v-1"/> <path fill="${a}" d="M 15 9h1v1h-1v-1"/> <path fill="${c}" d="M 16 9h1v1h-1v-1"/> <path fill="${c}" d="M 31 9h1v1h-1v-1"/> <path fill="${b}" d="M 32 9h1v1h-1v-1"/> <path fill="${a}" d="M 33 9h6v1h-6v-1"/> <path fill="${b}" d="M 39 9h1v1h-1v-1"/> <path fill="${c}" d="M 40 9h1v1h-1v-1"/> <path fill="${c}" d="M 8 10h1v1h-1v-1"/> <path fill="${a}" d="M 9 10h6v1h-6v-1"/> <path fill="${c}" d="M 15 10h1v1h-1v-1"/> <path fill="${c}" d="M 32 10h1v1h-1v-1"/> <path fill="${b}" d="M 33 10h6v1h-6v-1"/> <path fill="${c}" d="M 39 10h1v1h-1v-1"/> <path fill="${c}" d="M 9 11h6v1h-6v-1"/> <path fill="${c}" d="M 33 11h6v1h-6v-1"/> <path fill="${c}" d="M 9 13h6v1h1v7h-1v1h-3v-1h-1v-1h-1v-1h-1v-1h-1v-4h1v-1"/> <path fill="${c}" d="M 20 13h4v4h-1v-1h-1v-1h-1v-1h-1v-1"/> <path fill="${c}" d="M 33 13h6v1h1v7h-1v1h-3v-1h-1v-1h-1v-1h-1v-1h-1v-4h1v-1"/> <path fill="${c}" d="M 44 13h4v4h-1v-1h-1v-1h-1v-1h-1v-1"/>`
   }
 
   const rope = () =>{
+    const a = '#fff'
     return `
     <div class="rope">
       <svg x="0px" y="0px" width="100%" height="100%" viewBox="0 0 24 24">
-        <path fill="#f25f9a" d="M 23 8h1v1h-1v-1"/> <path fill="#f25f9a" d="M 22 9h1v1h-1v-1"/> <path fill="#f25f9a" d="M 21 10h1v1h-1v-1"/> <path fill="#f25f9a" d="M 20 11h1v1h-1v-1"/> <path fill="#f25f9a" d="M 0 12h20v1h-20v-1"/> <path fill="#f25f9a" d="M 20 13h1v1h-1v-1"/> <path fill="#f25f9a" d="M 21 14h1v1h-1v-1"/> <path fill="#f25f9a" d="M 22 15h1v1h-1v-1"/> <path fill="#f25f9a" d="M 23 16h1v1h-1v-1"/>
+        <path fill="${a}" d="M 23 8h1v1h-1v-1"/> <path fill="${a}" d="M 22 9h1v1h-1v-1"/> <path fill="${a}" d="M 21 10h1v1h-1v-1"/> <path fill="${a}" d="M 20 11h1v1h-1v-1"/> <path fill="${a}" d="M 0 12h20v1h-20v-1"/> <path fill="${a}" d="M 20 13h1v1h-1v-1"/> <path fill="${a}" d="M 21 14h1v1h-1v-1"/> <path fill="${a}" d="M 22 15h1v1h-1v-1"/> <path fill="${a}" d="M 23 16h1v1h-1v-1"/>
       </svg>
     </div>`
   }
-
+  
+  const planeTimer = []
+  const wrapper = document.querySelector('.wrapper')
   const cellD = 60
   const topValues = [0.5,1.5,2.5,3.5]
+  const bannerContent = window.location.hash.replace('#','')
+  const banners = []
   let spriteId = 0
   let topIndex = 3
   let count = 0
-  let letterCount = 0
   let bannerIndex = 0
   
   
@@ -90,7 +112,6 @@ function init() {
     setInterval(()=>{
       animate(sprite, 2, cellD)
     },200)
-    // console.log('test',plane.childNodes[1].childNodes[1].childNodes[1])
     const modules = document.querySelectorAll(`.module_${spriteId}`)
     bop(modules,0)
     topIndex = (topIndex + 1) < topValues.length
@@ -124,63 +145,45 @@ function init() {
     },(8 + 6) * 1000)
   }
 
-  const bannerContent = window.location.hash.replace('#','')
-  const banners = []
   
-  // console.log(bannerContent)
-  // console.log(messageSplitLimit)
-  // console.log('wrapper', messageSplitLimit)
-  // const calcWrapIndex = () =>{
-  //   const flexWrapper = document.querySelector('.flex_flexWrapper')
-  //   const bannerContent = window.location.hash.replace('#','')
-  //   const wrapIndex = []
-  //   flexWrapper.innerHTML = bannerContent.split('#').map(word=>{
-  //     return `
-  //       <div class="message">
-  //         ${word}
-  //       </div>
-  //     `
-  //   }).join('')
-  //   const messageGhosts = document.querySelectorAll('.messageGhost')
-  //   messageGhosts.forEach((message,i)=>{
-  //     if (i === (messageGhosts.length - 1)) return
-  //     if (message.getBoundingClientRect().y < messageGhosts[i + 1].getBoundingClientRect().y){
-  //       wrapIndex.push(i)
-  //     }
-  //   })
-  //   return wrapIndex
-  // }
-  // const wrapIndex = calcWrapIndex()
+  const calcWrapIndex = () =>{
+    const flexWrapper = document.querySelector('.flex_wrapper')
+    const wrapIndex = []
+    flexWrapper.innerHTML = bannerContent.split('#').map(word=>{
+      return `
+        <div class="message_ghost">
+          ${word}
+        </div>
+      `
+    }).join('')
+    const messageGhosts = document.querySelectorAll('.message_ghost')
+    messageGhosts.forEach((message,i)=>{
+      if (i === (messageGhosts.length - 1)) return
+      if (message.getBoundingClientRect().y < messageGhosts[i + 1].getBoundingClientRect().y){
+        wrapIndex.push(i)
+      }
+    })
+    return wrapIndex
+  }
   
-  const splitContentForBanners = () =>{
+  
+  const splitTextForBanners = () =>{
     //* banners populated based on page width
     banners.length = 0
     const word = []
-    const wrapperMinusPlane = wrapper.offsetWidth - 120
-    const messageSplitLimit = Math.floor(((wrapperMinusPlane - (wrapperMinusPlane * 0.1)) / 20))
-    console.log('bannerContent', bannerContent)
+    const wrapIndex = calcWrapIndex()
+    let hashCount = -1
     bannerContent.split('').forEach((letter,i)=>{
-      letterCount++
+      if (letter === '#') hashCount++
       word.push(letter)
-
-      // ensures word are not split across banner
-      if (letter === '#'){  //TODO need to check if first #
-        const index = !banners.length 
-          ? 0
-          : banners.length - 1
-        banners[index] = banners[index]
-          ? banners[index] + word.join('')
-          : word.join('')
-        word.length = 0
-        
-      } else if (letterCount === messageSplitLimit){
+      if ((wrapIndex.find(i=>i === hashCount) && letter === '#')){
         banners.push(word.join(''))
         word.length = 0
-        letterCount = 0
       }
       if (i === (bannerContent.length - 1)) banners.push(word.join(''))
     })
-    console.log('latest banner', banners)
+    // console.log('wrapIndex', wrapIndex)
+    // console.log('latest banner', banners)
   }
 
   const createTimers = () =>{
@@ -216,8 +219,7 @@ function init() {
   }
   
 
-
-  splitContentForBanners()
+  splitTextForBanners()
   createTimers()
   createPlanes()
 
@@ -231,9 +233,8 @@ function init() {
     spriteId = 0
     topIndex = 3
     count = 0
-    letterCount = 0
     bannerIndex = 0
-    splitContentForBanners()
+    splitTextForBanners()
     createTimers()
     createPlanes()
   })

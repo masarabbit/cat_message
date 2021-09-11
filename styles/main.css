@@ -20,7 +20,6 @@ p, h1, h2, h3, h4 {
   padding-inline-start: 0px;
 }
 
-
 .wrapper {
   position: fixed;
   top: 0;
@@ -40,45 +39,31 @@ p, h1, h2, h3, h4 {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  border: 1px solid;
-  opacity: 0.1;
+  opacity: 0;
 }
 
-/* .pointer-events-none {
+.pointer-events-none {
   pointer-events: none;
-} */
+}
 
 .plane_wrapper {
   position: absolute;
   display: flex;
   align-items: center;
-  /* border: red 1px solid; */
 }
 
-.sprite_container,
-.fire_container {
+.sprite_container {
   position: relative;
   width: 60px;
   height: 60px;
   overflow: hidden;
 }
 
-
 .sprite {
   position: absolute;
   height: 60px;
   width: 120px;
   transform-origin: center bottom;
-  animation: squish infinite 1s;
-}
-
-
-.fire  {
-  position: absolute;
-  height: 60px;
-  width: 180px;
-  transform-origin: center bottom;
-  animation: squish infinite 1s;
 }
 
 .rope {
@@ -97,8 +82,6 @@ p, h1, h2, h3, h4 {
   background-color: white;
   color: navy;
   padding: 0px 8px;
-  z-index: -1;
-  
 }
 
 .module {
@@ -116,9 +99,29 @@ input {
 }
 
 .test {
-  color: #155379;
+  color: navy;
   color: #fff;
-  color: #fffd8a;
-  color: #0482d6;
   color: #f3e412;
+  color: #0482d6;
+}
+
+.test {
+  color: rgb(248, 59, 59);
+  color: rgb(177, 177, 177);
+  color: #ee8138;
+  color: rgb(252, 101, 201);
+}
+
+.test {
+  color: rgb(59, 59, 202);
+  color: rgb(166, 225, 252);
+  color: #9953f5;
+  color: #67fdf1;
+}
+
+.test {
+  color: #703505;
+  color: rgb(216, 168, 137);
+  color: #9df312;
+  color: #ffef5d;
 }
