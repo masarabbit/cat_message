@@ -9,20 +9,20 @@ function init() {
       d: '#0482d6',
     },
     {
-      a: 'rgb(248, 59, 59)',
+      a: '#f83b3b',
       b: 'pink',
       c: 'yellow',
-      d: 'rgb(252, 101, 201)',
+      d: '#fc65c9',
     },
     {
       a: '#fff',
-      b: 'rgb(59, 59, 202)',
+      b: '#3b3bca',
       c: '#9953f5',
       d: '#67fdf1',
     },
     {
       a: 'navy',
-      b: 'rgb(166, 225, 252)',
+      b: '#a6e1fc',
       c: '#9df312',
       d: '#ffef5d',
     }

@@ -22,10 +22,22 @@ function init() {
   const button = document.querySelector('button')
 
   const audio = document.querySelector('audio')
+  audio.src = sound
+
+
+  // let audioCtx = new AudioContext()
+  // let analyser = audioCtx.createAnalyser()
+  // analyser.fftSize = 2048
+  // let source = audioCtx.createMediaElementSource(audio)
+  // source.connect(analyser)
+  // source.connect(audioCtx.destination)
+  // let data = new Uint8Array(analyser.frequencyBinCount)
+  // analyser.getByteFrequencyData(data)
+  // console.log('data', data)
 
   button.addEventListener('click',()=>{
-    audio.src = sound
     audio.play()
+    // audioCtx.resume()
   })
 }
 
