@@ -49,7 +49,7 @@ function init() {
   const wrapper = document.querySelector('.wrapper')
   const cellD = 60
   const topValues = [0.5,1.5,2.5,3.5]
-  const bannerContent = window.location.hash.replace('#','').split('').reverse().join('')
+  let bannerContent = 'Hi,#write#something#in#the#white#box#and#click#\'create\''
   const banners = []
   let spriteId = 0
   let topIndex = 3
@@ -194,7 +194,6 @@ function init() {
   }
   
   // console.log('bannerContent', banners)
-
   const createPlanes = () =>{  
     const bannerText = banners[bannerIndex].split('').reverse().join('')[0] === '#'
       ? banners[bannerIndex]
@@ -235,7 +234,15 @@ function init() {
   createPlanes()
 
   window.addEventListener('resize', resetPlanes)
+  
 
+  //* create new message
+  const textarea = document.querySelector('textarea')
+  const createButton = document.querySelector('button')
+  textarea.addEventListener('change',()=>{
+    bannerContent = textarea.value.replaceAll('#','&num;').replaceAll(' ','#')
+  })
+  createButton.addEventListener('click',resetPlanes)
 
 }
 
