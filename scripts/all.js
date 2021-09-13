@@ -136,7 +136,7 @@ function init() {
         count = 0
         createPlanes()
       }
-    },(8 + 6) * 1000)
+    }, 30000)
   }
 
   

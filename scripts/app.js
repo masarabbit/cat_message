@@ -126,7 +126,7 @@ function init() {
       plane.style.left = '10%'
     },100)
     planeTimer[bannerIndex].timerTwo = setTimeout(()=>{
-      plane.style.left = `-${plane.offsetWidth + 200}px`
+      plane.style.left = `-${plane.offsetWidth + 400}px`
     },8000)
     planeTimer[bannerIndex].timerThree = setTimeout(()=>{
       wrapper.removeChild(plane)
@@ -136,7 +136,7 @@ function init() {
         count = 0
         createPlanes()
       }
-    },(8 + 6) * 1000)
+    },(2 + 8) * 3000)
   }
 
   
