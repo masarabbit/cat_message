@@ -1,6 +1,5 @@
 function init() {
 
-
   const colors = [
     {
       a: 'navy',
@@ -54,7 +53,6 @@ function init() {
   let count = 0
   let bannerIndex = 0
   
-
   const animate = (actor, frame, cellD) =>{
     const leftV = +(actor.style.left).replace('px','')
     let newLeftV = leftV - cellD
@@ -118,7 +116,7 @@ function init() {
       return
     }
     plane.style.top = `${topValues[topIndex] * plane.offsetHeight + (20 * topValues[topIndex])}px`
-    // console.log('top',`${topIndex}-${bannerIndex}`)
+
     plane.style.left = '100%'
     plane.style.transition = '6s ease'
     
@@ -139,7 +137,6 @@ function init() {
     }, 30000)
   }
 
-  
   const calcWrapIndex = () =>{
     const flexWrapper = document.querySelector('.flex_wrapper')
     const wrapIndex = []
@@ -160,7 +157,6 @@ function init() {
     return wrapIndex
   }
   
-  
   const splitTextForBanners = () =>{
     //* banners populated based on page width
     banners.length = 0
@@ -176,8 +172,6 @@ function init() {
       }
       if (i === (bannerContent.length - 1)) banners.push(word.join(''))
     })
-    // console.log('wrapIndex', wrapIndex)
-    // console.log('latest banner', banners)
   }
 
   const createTimers = () =>{
@@ -191,7 +185,6 @@ function init() {
     })
   }
   
-  // console.log('bannerContent', banners)
   const createPlanes = () =>{  
     const bannerText = banners[bannerIndex].split('').reverse().join('')[0] === '#'
       ? banners[bannerIndex]
@@ -201,7 +194,7 @@ function init() {
     bannerIndex = (bannerIndex + 1) < banners.length
       ? bannerIndex + 1
       : 0 
-    // console.log('length', `${banners.length}-${topValues.length}`)  
+
     if (bannerIndex === 0) spriteId = 0
 
     count++
@@ -233,7 +226,7 @@ function init() {
 
   window.addEventListener('resize', resetPlanes)
   
-
+  
   //* create new message
   const textarea = document.querySelector('textarea')
   const createButton = document.querySelector('button')
