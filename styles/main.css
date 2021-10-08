@@ -25,12 +25,18 @@ p, h1, h2, h3, h4 {
   top: 0;
   left: 0;
   width: 100%;
-  height: calc(100% - 100px);
+  height: 320px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 80px;
+}
+
+@media screen and (max-height: 320px) {
+  .wrapper {
+    margin-top: -40px;
+  }
 }
 
 .flex_wrapper {
@@ -67,7 +73,7 @@ p, h1, h2, h3, h4 {
 }
 
 .rope {
-  margin: -1px -2px 0 -20px;
+  margin: 0 -2px 0 -22px;
   height: 60px;
   width: 60px;
   z-index: -1;
