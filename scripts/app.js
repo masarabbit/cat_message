@@ -44,12 +44,99 @@ function init() {
       </svg>
     </div>`
   }
+
+  const encryptKey = {
+    'a': 'v',
+    'b': 'B',
+    'c': 'p',
+    'd': 's',
+    'e': 'K',
+    'f': 'M',
+    'g': 'H',
+    'h': 'X',
+    'i': 'U',
+    'j': 'Q',
+    'k': 'O',
+    'l': 'D',
+    'm': 'x',
+    'n': 'R',
+    'o': 'A',
+    'p': 'g',
+    'q': 'b',
+    'r': 't',
+    's': 'Z',
+    't': 'J',
+    'u': 'r',
+    'v': 'k',
+    'w': 'd',
+    'x': 'm',
+    'y': 'u',
+    'z': 'C',
+    'A': 'F',
+    'B': 'S',
+    'C': 'Y',
+    'D': 'L',
+    'E': 'n',
+    'F': 'E',
+    'G': 'h',
+    'H': 'c',
+    'I': 'w',
+    'J': 'q',
+    'K': 'I',
+    'L': 'P',
+    'M': 'N',
+    'N': 'W',
+    'O': 'o',
+    'P': 'a',
+    'Q': 'f',
+    'R': 'y',
+    'S': 'G',
+    'T': 'T',
+    'U': 'z',
+    'V': 'i',
+    'W': 'V',
+    'X': 'e',
+    'Y': 'j',
+    'Z': 'l',
+    ' ': '#',
+    '!': '1',
+    '?': '2'
+    // '#': '&num;'
+  }
+
+  const swapObject = obj =>{
+    const ret = {}
+    for (const key in obj){
+      ret[obj[key]] = key
+    }
+    return ret
+  }
+  
+  const decodeKey = swapObject(encryptKey)
   
   const planeTimer = []
   const wrapper = document.querySelector('.wrapper')
   const cellD = 60
   const topValues = [0.5,1.5,2.5,3.5]
-  const bannerContent = window.location.hash.replace('#','').split('').reverse().join('')
+  const isEncoded = window.location.hash.split('#')[1] === 'en'
+  
+  let skip = 0
+  const encoded = window.location.hash.replace('#en#','').replaceAll('&amp;','&').split('')
+  const bannerContent = isEncoded 
+    ? encoded.map((letter,i)=>{
+      if (skip > 0){
+        skip--
+        return letter
+      }
+      if (letter === '&' && encoded[i + 1] === 'n' && encoded[i + 2] === 'u' && encoded[i + 3] === 'm' && encoded[i + 4] === ';'){
+        skip = 4
+        return letter
+      }
+      if (letter === '#') return ' '
+      if (!decodeKey[letter]) return letter
+      return decodeKey[letter]
+    }).join('')
+    : window.location.hash.replace('#','').split('').reverse().join('')
   const banners = []
   let spriteId = 0
   let topIndex = 3
