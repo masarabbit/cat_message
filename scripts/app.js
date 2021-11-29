@@ -96,7 +96,7 @@ function init() {
     'X': 'e',
     'Y': 'j',
     'Z': 'l',
-    ' ': '#',
+    // ' ': '#',
     '!': '1',
     '?': '2'
     // '#': '&num;'
@@ -130,7 +130,7 @@ function init() {
         skip = 4
         return letter
       }
-      if (letter === '#') return ' '
+      // if (letter === '#') return ' '
       if (!decodeKey[letter]) return letter
       return decodeKey[letter]
     }).join('')
@@ -140,7 +140,6 @@ function init() {
   let topIndex = 3
   let count = 0
   let bannerIndex = 0
-  
 
   const animate = (actor, frame, cellD) =>{
     const leftV = +(actor.style.left).replace('px','')
